@@ -1,12 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./app";
-import { GlobalStyle } from "./gobal.style";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './app';
+import { GlobalStyle } from './gobal.style';
 
-ReactDOM.render(
-  <React.Fragment>
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
+  <>
     <GlobalStyle dark />
     <App />
-  </React.Fragment>,
-  document.getElementById("root")
+  </>
 );

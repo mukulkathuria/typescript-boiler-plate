@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 interface Theme {
   dark: boolean;
@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle<Theme>`
         box-sizing:border-box;
     }
     body{
-        background-color:${(props) => (props.dark ? "black" : "white")};
-        color:${(props) => (props.dark ? "white" : "black")};
+        background-color:${(props) => (props.dark ? 'black' : 'white')};
+        color:${(props) => (props.dark ? 'white' : 'black')};
     }
 `;
