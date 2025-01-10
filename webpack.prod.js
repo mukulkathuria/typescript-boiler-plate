@@ -1,27 +1,28 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const { DefinePlugin, EnvironmentPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const PUB_DIR = path.join(__dirname, 'public');
-const BUILD_DIR = path.join(__dirname, 'build');
+const build_dir = path.join(__dirname, 'build');
 
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name].[contentHash].bundle.js',
-    path: BUILD_DIR,
-    publicPath: '/'
+    filename: '[name].[hash].bundle.js',
+    path: build_dir,
+    publicPath: './'
   },
   optimization: {
     minimize: true,
+    moduleIds: 'size',
+    removeAvailableModules: true,
     runtimeChunk: {
       name: (entrypoint) => `runtimechunk~${entrypoint.name}`
     },
@@ -35,7 +36,7 @@ module.exports = merge(common, {
       }
     },
     minimizer: [
-      new OptimizeCssAssetsPlugin(),
+      new CssMinimizerPlugin(),
       new TerserPlugin({
         terserOptions: {
           format: {

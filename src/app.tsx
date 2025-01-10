@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { MyDiv } from './app.style';
 import ErrorBoundary from './Components/ErrorBoundary';
 import Loader from './Components/Loader';
 
@@ -10,12 +9,12 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <MyDiv>
+        <div>
           <p>App Testing</p>
           <Suspense fallback={<Loader />}>
             <Header />
           </Suspense>
-        </MyDiv>
+        </div>
       </BrowserRouter>
     </ErrorBoundary>
   );
